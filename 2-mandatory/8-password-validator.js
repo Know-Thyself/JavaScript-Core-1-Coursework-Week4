@@ -23,50 +23,63 @@ PasswordValidationResult=  [false, false, false, false, true]
 
 */
 
-function validatePasswords(passwords) {}
+function validatePasswords(passwords) {
+	return passwords.map((password, index, arr) => {
+		if (
+			containsUpperCaseLetter(password) &&
+			containsLowerCaseLetter(password) &&
+			containsNumber(password) &&
+			containsSymbol(password) &&
+			password.length >= 5 &&
+			arr.indexOf(password) === index
+		)
+			return true;
+		else return false;
+	});
+}
 
 // Returns true if string contains at least one uppercase letter.
-function containsUppercaseLetter(string) {
-  return /[A-Z]/.test(string);
+function containsUpperCaseLetter(string) {
+	return /[A-Z]/.test(string);
 }
 
 // Returns true if string contains at least one lowercase letter.
-function containsLowercaseLetter(string) {
-  return /[a-z]/.test(string);
+function containsLowerCaseLetter(string) {
+	return /[a-z]/.test(string);
 }
 
 // Returns true if string contains at least one number.
 function containsNumber(string) {
-  return /[0-9]/.test(string);
+	return /[0-9]/.test(string);
 }
 
 // Returns true if string contains at least one symbol.
 function containsSymbol(string) {
-  return /[!#$%.*&]/.test(string);
+	return /[!#$%.*&]/.test(string);
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 
-test("Example 1", () => {
-  expect(
-    validatePasswords([
-      "Se%5",
-      "TktE.TJTU",
-      "384#HsHF",
-      "dvyyeyy!5",
-      "tryT3729",
-    ])
-  ).toEqual([false, false, true, false, false]);
+test('Example 1', () => {
+	expect(
+		validatePasswords([
+			'Se%5',
+			'TktE.TJTU',
+			'384#HsHF',
+			'dvyyeyy!5',
+			'tryT3729',
+		])
+	).toEqual([false, false, true, false, false]);
 });
 
-test("Example 2", () => {
-  expect(
-    validatePasswords([
-      "StUFf27%",
-      "Pl3nty!",
-      "Jai33",
-      "shajsaUA**&&",
-      "Pl3nty!",
-    ])
-  ).toEqual([true, true, false, false, false]);
+test('Example 2', () => {
+	expect(
+		validatePasswords([
+			'StUFf27%',
+			'Pl3nty!',
+			'Jai33',
+			'shajsaUA**&&',
+			'Pl3nty!',
+		])
+	).toEqual([true, true, false, false, false]);
 });

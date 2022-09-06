@@ -14,27 +14,55 @@ You don't have to worry about making this algorithm work fast! The idea is to ge
 "think" like a computer and practice your knowledge of basic JavaScript.
 */
 
-function sortAges(arr) {}
+function sortAges(arr) {
+	const indexes = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (isNaN(arr[i]) || typeof arr[i] === 'string') indexes.push(i);
+	}
+  // removing non-number data types 
+	while (indexes.length) {
+		arr.splice(indexes.pop(), 1);
+	}
+  // bubble sort algorithms (optimized) 
+	const swap = (arr, idx1, idx2) => {
+		[arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+	};
+	let noSwaps;
+	for (let i = arr.length; i > 0; i--) {
+    noSwaps = true;
+		for (let j = 0; j < i - 1; j++) {
+			if (arr[j] > arr[j + 1]) {
+				swap(arr, j, j + 1);
+        noSwaps = false;
+			}
+		}
+		if(noSwaps) break;
+	}
+	return arr;
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 
 const agesCase1 = [
-  "🎹",
-  100,
-  "💩",
-  55,
-  "🥵",
-  "🙈",
-  45,
-  "🍕",
-  "Sanyia",
-  66,
-  "James",
-  23,
-  "🎖",
-  "Ismeal",
+	'🎹',
+	100,
+	'💩',
+	55,
+	'🥵',
+	'🙈',
+	45,
+	'🍕',
+	'Sanyia',
+	66,
+	'James',
+	23,
+	'🎖',
+	'Ismeal',
 ];
-const agesCase2 = ["28", 100, 60, 55, "75", "🍕", "Elamin"];
+const agesCase2 = ['28', 100, 60, 55, '75', '🍕', 'Elamin'];
+
+console.log(sortAges(agesCase1));
+console.log(sortAges(agesCase2));
 
 test("sortAges function works - case 1", () => {
   expect(sortAges(agesCase1)).toEqual([23, 45, 55, 66, 100]);

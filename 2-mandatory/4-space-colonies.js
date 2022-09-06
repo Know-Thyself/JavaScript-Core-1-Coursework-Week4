@@ -8,14 +8,16 @@
 
   NOTE: don't include any element that is not a "family".
 
-  HINT: Whenever you read the above the instructions, try to come up with the main input and output and logic
+  HINT: Whenever you read the above instructions, try to come up with the main input and output and logic
         Input: Is an array
         Output: Is an array
         Logic: Only strings that start with A, and finish with family
   
 */
 
-function getSettlers() {}
+function getSettlers(voyagers) {
+  return voyagers.filter(voyager => voyager.slice(-6) === 'family' && voyager.startsWith('A'));
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

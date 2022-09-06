@@ -9,6 +9,15 @@
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
+const fizzBuzz = (num) => {
+	if (num % 3 === 0 && num % 5 === 0) num = 'FizzBuzz';
+	if (num % 3 === 0) num = 'Fizz';
+	if (num % 5 === 0) num = 'Buzz';
+	console.log(num);
+};
+
+arr.forEach(fizzBuzz);
+
 /* EXPECTED OUTPUT */
 
 /*
